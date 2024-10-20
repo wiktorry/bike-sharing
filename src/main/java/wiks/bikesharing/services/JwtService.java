@@ -35,7 +35,8 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        Map<String, Object> claims = new HashMap<>();
+        return generateToken(claims, userDetails);
     }
 
     public boolean isTokenValid(String jwt, UserDetails userDetails) {
