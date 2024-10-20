@@ -8,4 +8,6 @@ public interface UserService {
     Token signUp(User user);
 
     Token signIn(UserAuth user);
+
+    void userExists(User user);
 }
