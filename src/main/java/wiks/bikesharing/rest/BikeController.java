@@ -1,23 +1,42 @@
 package wiks.bikesharing.rest;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wiks.bikesharing.entity.Bike;
-import wiks.bikesharing.repositories.BikeRepository;
+import wiks.bikesharing.services.BikeService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sharing/bike")
 public class BikeController {
-    private BikeRepository bikeRepository;
+    private final BikeService bikeService;
 
-    public BikeController(BikeRepository bikeRepository) {
-        this.bikeRepository = bikeRepository;
+    public BikeController(BikeService bikeService) {
+        this.bikeService = bikeService;
+    }
+
+    @GetMapping
+    public List<Bike> getAllBikes() {
+        return bikeService.getAllBikes();
+    }
+
+    @GetMapping("/{id}")
+    public Bike getBike(@PathVariable int id) {
+        return bikeService.getBikeById(id);
     }
 
     @PostMapping
     public Bike addBike(@RequestBody Bike bike) {
-        return bikeRepository.save(bike);
+        return bikeService.addBike(bike);
+    }
+
+    @PutMapping
+    public Bike updateBike(@RequestBody Bike bike) {
+        return bikeService.updateBike(bike);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBike(@PathVariable int id) {
+        bikeService.deleteBikeById(id);
     }
 }

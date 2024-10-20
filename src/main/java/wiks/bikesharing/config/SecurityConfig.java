@@ -30,8 +30,9 @@ public class SecurityConfig {
                         authorizationManagerRequestMatcherRegistry
                                 .requestMatchers("sharing/user/**")
                                 .permitAll()
-                                .requestMatchers(HttpMethod.POST, "/sharing/bike")
-                                .hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/sharing/bike").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/sharing/bike").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/sharing/bike/**").hasAuthority("ADMIN")
                                 .anyRequest()
                                 .authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
