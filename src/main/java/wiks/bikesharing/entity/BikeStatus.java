@@ -1,5 +1,5 @@
 package wiks.bikesharing.entity;
 
-public enum Status {
+public enum BikeStatus {
     SERVICE, RENTED, FREE
 }

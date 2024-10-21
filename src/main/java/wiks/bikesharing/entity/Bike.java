@@ -29,7 +29,7 @@ public class Bike {
     private int kilometres;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
-    private Status status;
+    private BikeStatus status;
     @OneToMany(mappedBy = "bike")
     private List<Rental> rentals;
 
