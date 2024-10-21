@@ -5,4 +5,6 @@ import wiks.bikesharing.entity.User;
 
 public interface UserService {
     User createUser(CreateUserRequest user);
+
+    User updateUser(User user);
 }

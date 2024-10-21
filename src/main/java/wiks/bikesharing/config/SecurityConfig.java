@@ -33,6 +33,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/sharing/bike").hasAuthority("ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/sharing/bike").hasAuthority("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/sharing/bike/**").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/sharing/bike/{id}/rent").permitAll()
                                 .anyRequest()
                                 .authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->

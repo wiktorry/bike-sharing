@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
     private void throwIfUserExists(CreateUserRequest user) {
         if (userRepository.existsByUsername(user.getUsername())) {
             throw new BadRequestException("Username already exists in database");

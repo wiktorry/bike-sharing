@@ -1,11 +1,13 @@
 package wiks.bikesharing.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,7 +32,14 @@ public class Bike {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private BikeStatus status;
-    @OneToMany(mappedBy = "bike")
+    @OneToMany(mappedBy = "bike", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Rental> rentals;
 
+    public void addRental(Rental rental) {
+        if (rentals == null) {
+            rentals = new ArrayList<Rental>();
+        }
+        rentals.add(rental);
+    }
 }

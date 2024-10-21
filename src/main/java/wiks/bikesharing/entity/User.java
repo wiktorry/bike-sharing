@@ -1,6 +1,7 @@
 package wiks.bikesharing.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -33,8 +35,16 @@ public class User implements UserDetails {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Rental> rentals;
+
+    public void addRental(Rental rental) {
+        if (rentals == null) {
+            rentals = new ArrayList<Rental>();
+        }
+        rentals.add(rental);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
