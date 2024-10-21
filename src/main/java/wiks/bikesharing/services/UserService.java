@@ -9,5 +9,7 @@ public interface UserService {
 
     Token signIn(UserAuth user);
 
+    User getCurrentUser();
+
     void userExists(User user);
 }

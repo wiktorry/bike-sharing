@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -25,5 +27,10 @@ public class Bike {
     private String model;
     @Column(name = "kilometres")
     private int kilometres;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+    @OneToMany(mappedBy = "bike")
+    private List<Rental> rentals;
 
 }

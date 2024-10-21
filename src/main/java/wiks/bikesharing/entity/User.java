@@ -33,6 +33,8 @@ public class User implements UserDetails {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToMany(mappedBy = "user")
+    private List<Rental> rentals;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
