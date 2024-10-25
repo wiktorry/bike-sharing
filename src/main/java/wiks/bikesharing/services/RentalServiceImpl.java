@@ -7,6 +7,8 @@ import wiks.bikesharing.entity.BikeStatus;
 import wiks.bikesharing.entity.Rental;
 import wiks.bikesharing.entity.User;
 import wiks.bikesharing.exceptions.BadRequestException;
+import wiks.bikesharing.exceptions.NotFoundException;
+import wiks.bikesharing.exceptions.UnauthorizedException;
 import wiks.bikesharing.repositories.RentalRepository;
 
 import java.time.LocalDateTime;
@@ -41,4 +43,22 @@ public class RentalServiceImpl implements RentalService {
         }
         throw new BadRequestException("Bike is not free");
     }
+
+    @Override
+    public Rental endRental(int rentalId) {
+        User user = authService.getCurrentUser();
+        Rental rental = rentalRepository.findById(rentalId).orElseThrow(() -> new NotFoundException("Rental with this id doesn't exist in database"));
+        if (rental.getUser().getUsername().equals(user.getUsername())) {
+            Bike bike = rental.getBike();
+            if (rental.getEndDate() == null) {
+                bike.setStatus(BikeStatus.FREE);
+                rental.setEndDate(LocalDateTime.now());
+                bikeService.updateBike(bike);
+                return rentalRepository.save(rental);
+            }
+            throw new BadRequestException("This rental has already finished");
+        }
+        throw new UnauthorizedException("You don't have access to this rental");
+    }
+
 }

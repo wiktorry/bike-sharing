@@ -6,4 +6,6 @@ import wiks.bikesharing.entity.Rental;
 @Service
 public interface RentalService {
     Rental startRental(int bikeId);
+
+    Rental endRental(int bikeId);
 }
