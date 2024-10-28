@@ -23,7 +23,7 @@ public class JwtService {
         return extractClaims(jwt, Claims::getSubject);
     }
 
-    public String generateToken(Map<String, Object> claims, UserDetails userDetails) {
+    private String generateToken(Map<String, Object> claims, UserDetails userDetails) {
         return Jwts
                 .builder()
                 .claims(claims)

@@ -21,7 +21,8 @@ public class AppConfig {
 
     @Bean
     UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("User doesn't exist in database"));
+        return username -> userRepository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundException("User doesn't exist in database"));
     }
 
     @Bean

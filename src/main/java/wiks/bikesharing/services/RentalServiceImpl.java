@@ -19,7 +19,6 @@ public class RentalServiceImpl implements RentalService {
     private final RentalRepository rentalRepository;
     private final BikeService bikeService;
     private final AuthService authService;
-    private final UserService userService;
 
     @Override
     public Rental startRental(int bikeId) {
@@ -36,8 +35,6 @@ public class RentalServiceImpl implements RentalService {
             bike.setStatus(BikeStatus.RENTED);
             user.addRental(rental);
             bike.addRental(rental);
-            userService.updateUser(user);
-            bikeService.updateBike(bike);
             rentalRepository.save(rental);
             return rental;
         }
@@ -53,7 +50,6 @@ public class RentalServiceImpl implements RentalService {
             if (rental.getEndDate() == null) {
                 bike.setStatus(BikeStatus.FREE);
                 rental.setEndDate(LocalDateTime.now());
-                bikeService.updateBike(bike);
                 return rentalRepository.save(rental);
             }
             throw new BadRequestException("This rental has already finished");
