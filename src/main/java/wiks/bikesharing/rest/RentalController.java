@@ -21,8 +21,8 @@ public class RentalController {
         return rentalService.startRental(bikeId);
     }
 
-    @PostMapping("/{rentalId}/endRent")
-    public Rental endRental(@PathVariable int rentalId) {
-        return rentalService.endRental(rentalId);
+    @PostMapping("/{bikeId}/endRent")
+    public Rental endRental(@PathVariable int bikeId) {
+        return rentalService.endRental(bikeId);
     }
 }

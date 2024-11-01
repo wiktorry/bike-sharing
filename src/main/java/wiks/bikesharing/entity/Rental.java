@@ -24,10 +24,8 @@ public class Rental {
     private LocalDateTime startDate;
     @Column(name = "endDate")
     private LocalDateTime endDate;
-    @ManyToOne
-    @JoinColumn(name = "bikeId")
-    @JsonBackReference
-    private Bike bike;
+    @Column(name = "bikeId")
+    private int bikeId;
     @ManyToOne
     @JoinColumn(name = "userId")
     @JsonBackReference

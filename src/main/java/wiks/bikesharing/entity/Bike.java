@@ -32,14 +32,5 @@ public class Bike {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private BikeStatus status;
-    @OneToMany(mappedBy = "bike", fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private List<Rental> rentals;
-
-    public void addRental(Rental rental) {
-        if (rentals == null) {
-            rentals = new ArrayList<Rental>();
-        }
-        rentals.add(rental);
-    }
+    
 }
