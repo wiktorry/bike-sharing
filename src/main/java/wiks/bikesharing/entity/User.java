@@ -1,7 +1,6 @@
 package wiks.bikesharing.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,7 +35,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    @JsonManagedReference
     private List<Rental> rentals;
 
     public void addRental(Rental rental) {

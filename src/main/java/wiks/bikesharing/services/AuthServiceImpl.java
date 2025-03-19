@@ -15,7 +15,7 @@ import wiks.bikesharing.repositories.UserRepository;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private final JwtService jwtService;
+    private final JwtServiceImpl jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
 

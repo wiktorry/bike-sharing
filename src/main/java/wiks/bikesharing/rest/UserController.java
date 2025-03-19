@@ -1,5 +1,6 @@
 package wiks.bikesharing.rest;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +14,10 @@ import wiks.bikesharing.services.UserService;
 
 @RestController
 @RequestMapping("sharing/user")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
     private final AuthService authService;
-
-    public UserController(UserService userService, AuthService authService) {
-        this.userService = userService;
-        this.authService = authService;
-    }
 
     @PostMapping("/signUp")
     public User signUp(@RequestBody CreateUserRequest userRequest) {

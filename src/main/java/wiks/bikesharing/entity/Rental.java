@@ -1,6 +1,5 @@
 package wiks.bikesharing.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +27,5 @@ public class Rental {
     private int bikeId;
     @ManyToOne
     @JoinColumn(name = "userId")
-    @JsonBackReference
     private User user;
 }

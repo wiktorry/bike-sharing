@@ -12,16 +12,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import wiks.bikesharing.services.JwtService;
+import wiks.bikesharing.services.JwtServiceImpl;
 
 import java.io.IOException;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
-    private final JwtService jwtService;
+    private final JwtServiceImpl jwtService;
     private final UserDetailsService userDetailsService;
 
-    public JwtAuthFilter(JwtService jwtService, UserDetailsService userDetailsService) {
+    public JwtAuthFilter(JwtServiceImpl jwtService, UserDetailsService userDetailsService) {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
     }

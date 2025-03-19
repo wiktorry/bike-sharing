@@ -1,14 +1,10 @@
 package wiks.bikesharing.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -32,5 +28,4 @@ public class Bike {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private BikeStatus status;
-    
 }

@@ -22,10 +22,10 @@ public class UserServiceImpl implements UserService {
         throwIfUserExists(userRequest);
         User user = new User(
                 0,
-                userRequest.getUsername(),
-                userRequest.getEmail(),
-                passwordEncoder.encode(userRequest.getPassword()),
-                userRequest.getRole(),
+                userRequest.username(),
+                userRequest.email(),
+                passwordEncoder.encode(userRequest.password()),
+                userRequest.role(),
                 new ArrayList<Rental>()
         );
         userRepository.save(user);
@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private void throwIfUserExists(CreateUserRequest user) {
-        if (userRepository.existsByUsername(user.getUsername())) {
+        if (userRepository.existsByUsername(user.username())) {
             throw new BadRequestException("Username already exists in database");
-        } else if (userRepository.existsByEmail(user.getEmail())) {
+        } else if (userRepository.existsByEmail(user.email())) {
             throw new BadRequestException("Email already exists in database");
         }
     }

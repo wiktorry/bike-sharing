@@ -110,6 +110,7 @@
     </dependencies>
 
     <build>
+        <finalName>bike-sharing</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
