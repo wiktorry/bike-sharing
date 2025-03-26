@@ -85,8 +85,9 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
         String response = result.getResponse().getContentAsString();
-        Map<String, Object> responseMap = objectMapper.readValue(response, new TypeReference<Map<String, Object>>() {
-        });
+        Map<String, Object> responseMap = objectMapper.readValue(response,
+                new TypeReference<Map<String, Object>>() {
+                });
         String token = (String) responseMap.get("token");
         String usernameToken = jwtService.extractUsername(token);
         Assertions.assertEquals("wiktor", usernameToken);
